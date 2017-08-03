@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i|Orbitron:400,500,700,900');
+
+body {
+  background-image: url("../img/background.png") !important;
+  background-repeat: repeat !important;
+  background-color: #073642 !important;
+  color: #073642;
+  /* margin: 15px; */
+  padding: 0px;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+caption {
+  color: #073642;
+  font-weight: 900;
+}
+
+.title {
+  font-family: 'Orbitron', serif;
+}
+
+h2 {
+  font-family: 'Orbitron', serif;
+  font-weight: bold;
+  font-size: 30px;
+  color: #fff;
+}
+
+h3 {
+  margin-top: 10px !important;
+  font-family: 'Orbitron', serif;
+  font-weight: medium;
+  font-size: 24px;
+  color: #fff;
+}
+
+.modal-title {
+  color: #657980 !important;
+}
+
+h4 {
+  font-family: 'Orbitron', serif;
+  font-weight: medium;
+  font-size: 20px;
+  color: #5c8c9c;
+}
+
+p {
+  color: #fff;
+}
+
+a {
+  color: #657980 !important;
+}
+
+a:hover {
+  color: #4d7e8f !important;
+}
+
+li a {
+  font-size: 18px;
+}
+
+hr {
+  border-top: 1px solid #586e75 !important;
+}
+
+blockquote {
+  border-left: 5px solid #586e75 !important;
+}
+
+.header-global {
+  position: absolute;
+  top: 0px;
+  display: block;
+  width: 100%;
+  height: 60px;
+  background-color: black;
+  z-index: 2000;
+  border-bottom: 1px solid gray;
+}
+
+.headrow {
+  width: 100%;
+  top: 0;
+  display: block;
+  margin-left: 30px;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-height: 78px !important;
+  background-color: black;
+}
+
+.headrow h2 {
+  color: #fff !important;
+  font-weight: black;
+}
+
+.outer {
+  top: 60px !important;
+  position: absolute;
+  padding: 5px;
+  margin: 0px;
+  width: 100%;
+}
+
+.outer-container {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  border: 1px solid #586e75;
+  border-radius: 3px;
+  margin: 0px;
+  color: white;
+}
+
+.outer-top {
+  margin: 5px;
+}
+
+.main {
+  border: 1px solid #586e75;
+  border-radius: 1px;
+  background-color: #eef;
+  padding-top: 5px;
+  margin: 5px;
+}
+
+.left{
+}
+
+.right {
+  border-left: thin solid #586e75;
+}
+
+.bottom {
+  clear: both;
+  border: 1px solid #586e75;
+  border-radius: 1px;
+  padding: 0px;
+  margin: 5px;
+}
+
+.form-group {
+  margin-bottom: 7px;
+}
+
+.logo {
+  max-width: 124px;
+  width: 100%;
+  margin-top: 1.05rem;
+  display: inline-block;
+  float: left;
+}
+
+.logo svg {
+  /*max-height: 40px !important;*/
+}
+
+.logo a {
+  display: block;
+}
