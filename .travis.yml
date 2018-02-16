@@ -23,3 +23,6 @@ deploy:
   script: rsync -r --delete-after --quiet dist/ wolfblade@wolfblade.info:~/public
   on:
     all_branches: true
+cache:
+  directories:
+    - node_modules
