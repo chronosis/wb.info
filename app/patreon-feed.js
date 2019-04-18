@@ -51,6 +51,7 @@ class PatreonFeed {
     };
     const url = this.buildURL();
     const config = {
+      crossdomain: true,
       headers: {'Access-Control-Allow-Origin': '*'}
     };
     return axios.get(url, config)
