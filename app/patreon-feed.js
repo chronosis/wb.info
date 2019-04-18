@@ -78,7 +78,9 @@ class PatreonFeed {
   }
 
   buildURL() {
-    let url = 'https://api.patreon.com/stream?json-api-version=1.0';
+    // let baseUrl = 'https://api.patreon.com';
+    let baseUrl = 'https://8g70aztbkl.execute-api.us-east-1.amazonaws.com/prod';
+    let url = `${baseUrl}/stream?json-api-version=1.0`;
     for (let type in this.fields) {
       if (this.fields.hasOwnProperty(type)) {
         let fields = this.fields[type].join('%2C');
