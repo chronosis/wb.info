@@ -2,8 +2,8 @@ import 'jquery';
 import 'bootstrap';
 import 'jquery.cookie';
 import './modal.extended';
-import config from './config';
 import PatreonFeed from './patreon-feed';
+import config from './config';
 
 export class Scaffold {
   constructor() {

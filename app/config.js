@@ -1,4 +1,4 @@
-config = {
+const config = {
   creatorID: 79480
 };
 
