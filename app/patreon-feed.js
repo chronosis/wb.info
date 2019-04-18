@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export class PatreonFeed {
+class PatreonFeed {
   constructor(creatorID) {
     this.id = creatorID;
     this.fields = {
@@ -91,3 +91,5 @@ export class PatreonFeed {
     return url;
   }
 }
+
+export default PatreonFeed;
