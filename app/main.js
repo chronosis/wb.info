@@ -2,10 +2,12 @@ import 'jquery';
 import 'bootstrap';
 import 'jquery.cookie';
 import './modal.extended';
+import config from './config';
+import PatreonFeed from './patreon-feed';
 
 export class Scaffold {
   constructor() {
-
+    this.patreonFeed = new PatreonFeed(config.creatorID);
   }
 
   doRedirect(url) {
@@ -48,7 +50,7 @@ export class Scaffold {
         this.loadSection('#right', 'info.html', '#info');
       break;
       case "#artpacks":
-        this.loadSection('#right', 'artpacks.html', '#artpacks');      
+        this.loadSection('#right', 'artpacks.html', '#artpacks');
       break;
       case "#daki":
         this.loadSection('#right', 'daki.html', '#daki');
