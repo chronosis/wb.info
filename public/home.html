@@ -15,5 +15,8 @@
                    `<h6>${item.comment_count} Comments</h6></br>\n\n`;
       }
       document.getElementById('patreonFeed').innerHTML = `${headerStr}${bodyStr}`;
+    })
+    .catch((err) => {
+      console.log(err);
     });
 </script>
