@@ -20,7 +20,7 @@ class PatreonFeed {
     };
 
     this.filter = {
-      'creator_id': this.id,
+      'campaign_id': this.id,
       'is_by_creator': true,
       'is_following': false,
       'is_draft': false,
