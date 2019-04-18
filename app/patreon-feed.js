@@ -81,10 +81,10 @@ class PatreonFeed {
         url += `&fields[${type}]=${fields}`;
       }
     }
-    for (let filter in this.filter) {
-        if (this.filter.hasOwnProperty(filter)) {
-          val = this.filter[filter];
-          url += `&filter[${filter}]=${val}`;
+    for (let fltr in this.filter) {
+        if (this.filter.hasOwnProperty(fltr)) {
+          let val = this.filter[fltr];
+          url += `&filter[${fltr}]=${val}`;
         }
     }
     url += '&page[cursor]=null';
