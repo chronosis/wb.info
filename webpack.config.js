@@ -5,21 +5,23 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['.js']
   },
   stats: {
     errorDetails: true
   },
   module: {
-    loaders: [
-        {
-          test: /\.js?$/,
+    rules: [
+      {
+        test: /\.js?$/,
+        exclude: /(node_modules|browser_components)/,
+        use: {
           loader: 'babel-loader',
-          exclude: /(node_modules|browser_components)/,
-          query: {
-            presets: ['es2015']
+          options: {
+            presets: ['@babel/preset-env']
           }
         }
+      }
     ]
   }
 };

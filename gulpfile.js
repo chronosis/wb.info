@@ -45,7 +45,7 @@ let plumberOptions = {
 };
 
 // Lint JS/JSX Files (For Express)
-gulp.task('eslint', function() {
+gulp.task('eslint', () => {
   return gulp.src([devFolder + '/assets/js/*.js?', 'app/**/*.js?'])
     .pipe(eslint({
       baseConfig: {
@@ -57,55 +57,56 @@ gulp.task('eslint', function() {
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
+gulp.task('lint', gulp.series('eslint'));
 
 // Copy Bootstrap to build/assets
 // only if the copy in node_modules is "newer"
-gulp.task('copy-bootstrap-js', function() {
+gulp.task('copy-bootstrap-js', () => {
   let dest = buildFolder + 'assets/js';
   return gulp.src(bootstrapJSPath)
     .pipe(newer(dest))
     .pipe(gulp.dest(dest));
 });
-gulp.task('copy-bootstrap-css', function() {
+gulp.task('copy-bootstrap-css', () => {
   let dest = buildFolder + 'assets/css';
   return gulp.src(bootstrapCSSPath)
     .pipe(newer(dest))
     .pipe(gulp.dest(dest));
 });
-gulp.task('copy-bootstrap-fonts', function() {
+gulp.task('copy-bootstrap-fonts', () => {
   let dest = buildFolder + 'assets/fonts';
   return gulp.src(bootstrapFontPath)
     .pipe(newer(dest))
     .pipe(gulp.dest(dest));
 });
-gulp.task('bootstrap', ['copy-bootstrap-js','copy-bootstrap-css','copy-bootstrap-fonts']);
+gulp.task('bootstrap', gulp.series('copy-bootstrap-js', 'copy-bootstrap-css', 'copy-bootstrap-fonts'));
 
 // Copy jQuery to build/assets (needed for Bootstrap JS)
 // only if the copy in node_modules is "newer"
-gulp.task('copy-jquery-js', function() {
+gulp.task('copy-jquery-js', () => {
   let dest = buildFolder + 'assets/js';
   return gulp.src(jqueryJSPath)
     .pipe(newer(dest))
     .pipe(gulp.dest(dest));
 });
-gulp.task('copy-jquery-cookie-js', function() {
+gulp.task('copy-jquery-cookie-js', () => {
   let dest = buildFolder + 'assets/js';
   return gulp.src(jqueryCookiePath)
     .pipe(newer(dest))
     .pipe(gulp.dest(dest));
 });
-gulp.task('jquery', ['copy-jquery-js', 'copy-jquery-cookie-js']);
+gulp.task('jquery', gulp.series('copy-jquery-js', 'copy-jquery-cookie-js'));
 
 // Copy html files build/**
 // only if the copy is newer
-gulp.task('html', function() {
+gulp.task('html', () => {
   return gulp.src(devFolder + '**/*.html')
     .pipe(newer(buildFolder))
     .pipe(gulp.dest(buildFolder));
 });
 
 // Transpile SCSS to CSS
-gulp.task('sass', function(){
+gulp.task('sass', () => {
   return gulp.src(devFolder + '**/*.scss')
     .pipe(plumber())
     .pipe(sass.sync().on('error', sass.logError))
@@ -115,7 +116,7 @@ gulp.task('sass', function(){
 });
 
 // Minify CSS
-gulp.task('css', function(){
+gulp.task('css', () => {
   return gulp.src(devFolder + '/**/*.css')
     .pipe(plumber())
     .pipe(minifyCSS())
@@ -124,13 +125,13 @@ gulp.task('css', function(){
 });
 
 // Images
-gulp.task('images', function() {
+gulp.task('images', () => {
   return gulp.src(imgSrc)
     .pipe(newer(imgDest))
     .pipe(gulp.dest(imgDest));
 });
 
-gulp.task('base-js', function() {
+gulp.task('base-js', () => {
   let dest = buildFolder + 'assets/js';
   return gulp.src(jsSrc)
     .pipe(newer(dest))
@@ -138,7 +139,7 @@ gulp.task('base-js', function() {
 });
 
 // JS lint / babel / sourcemap
-gulp.task('js', ['bootstrap', 'jquery', 'base-js', 'eslint'], function() {
+gulp.task('js', gulp.series('bootstrap', 'jquery', 'base-js', 'eslint'), () => {
   return gulp.src(devFolder + '**/*.js?')
     .pipe(plumber())
     .pipe(babel({
@@ -149,7 +150,7 @@ gulp.task('js', ['bootstrap', 'jquery', 'base-js', 'eslint'], function() {
 });
 
 // Webpack
-gulp.task('webpack', function() {
+gulp.task('webpack', () => {
   return gulp.src('./app/main.js')
     //.pipe(plumber())
     .pipe( webpack( require('./webpack.config') ) )
@@ -157,10 +158,10 @@ gulp.task('webpack', function() {
     .pipe(gulp.dest(buildFolder));
 });
 
-gulp.task('bundle-assets', [ 'html', 'sass', 'css', 'images', 'js' ]);
+gulp.task('bundle-assets', gulp.series('html', 'sass', 'css', 'images', 'js'));
 
-gulp.task('default', ['bundle-assets', 'webpack']);
+gulp.task('default', gulp.series('bundle-assets', 'webpack'));
 
-gulp.task('sass:watch', function () {
-  gulp.watch('./sass/**/*.scss', ['sass']);
+gulp.task('sass:watch', () => {
+  gulp.watch('./sass/**/*.scss', gulp.series('sass'));
 });
