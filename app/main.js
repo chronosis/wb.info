@@ -7,7 +7,7 @@ import config from './config';
 
 export class Scaffold {
   constructor() {
-    this.patreonFeed = new PatreonFeed(config.creatorID);
+    // this.patreonFeed = new PatreonFeed(config.creatorID);
   }
 
   doRedirect(url) {
