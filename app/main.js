@@ -21,6 +21,7 @@ export class Scaffold {
       $.cookie('ageCheck', true, { expires: 30 });
       let loc = window.location.hash;
       this.loadContents(loc);
+      return true;
     }
     if (value === false) {
       //$.cookie('ageCheck', false, { expires: 30 });

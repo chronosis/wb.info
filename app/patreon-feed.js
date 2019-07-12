@@ -26,6 +26,8 @@ class PatreonFeed {
       'is_draft': false,
       'contains_exclusive_posts': true
     }
+
+    this.baseURL = 'https://8g70aztbkl.execute-api.us-east-1.amazonaws.com/prod/patreon';
   }
 
   getFeed() {
@@ -73,23 +75,26 @@ class PatreonFeed {
       });
   }
 
-  buildURL() {
+  buildPostsURL() {
     // let baseUrl = 'https://api.patreon.com';
-    let baseUrl = 'https://8g70aztbkl.execute-api.us-east-1.amazonaws.com/prod';
-    let url = `${baseUrl}/stream?json-api-version=1.0`;
-    for (let type in this.fields) {
-      if (this.fields.hasOwnProperty(type)) {
-        let fields = this.fields[type].join('%2C');
-        url += `&fields[${type}]=${fields}`;
-      }
-    }
+    let url = `${this.baseURL}/posts?json-api-version=1.0&sort=-published_at`;
     for (let fltr in this.filter) {
         if (this.filter.hasOwnProperty(fltr)) {
           let val = this.filter[fltr];
           url += `&filter[${fltr}]=${val}`;
         }
     }
-    url += '&page[cursor]=null';
+    for (let type in this.fields) {
+      if (this.fields.hasOwnProperty(type)) {
+        let fields = this.fields[type].join('%2C');
+        url += `&fields[${type}]=${fields}`;
+      }
+    }
+    return url;
+  }
+
+  buildCampaignURL() {
+    let url = `${this.baseURL}/campaigns/${this.id}`;
     return url;
   }
 }
