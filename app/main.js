@@ -7,6 +7,7 @@ import config from './config';
 
 export class Scaffold {
   constructor() {
+    this.timerID = null;
     // this.patreonFeed = new PatreonFeed(config.creatorID);
   }
 
@@ -16,12 +17,17 @@ export class Scaffold {
     }
   }
 
+  doTimedLoad(loc) {
+    this.loadContents(loc);
+    window.clearTimeout(this.timerID);
+  }
+
   setAgeVerification(value) {
     if (value === true) {
       $.cookie('ageCheck', true, { expires: 30 });
       $('#agecheck').modal('hide');
       let loc = window.location.hash;
-      window.setImmediate((lc) => { this.loadContents(lc); }, loc);
+      this.timerID = window.setTimeout(this.doTimedLoad.bind(this), 1, loc);
       return true;
     }
     if (value === false) {
