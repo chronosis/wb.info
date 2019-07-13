@@ -25,7 +25,9 @@ export class Scaffold {
   setAgeVerification(value) {
     if (value === true) {
       $.cookie('ageCheck', true, { expires: 30 });
-      $('#agecheck').modal('hide');
+      $("#agecheck").modal("toggle")
+      // document.getElementsById('agecheck').remove()
+      // document.getElementsByClassName('modal-backdrop')[0].remove()
       let loc = window.location.hash;
       this.timerID = window.setTimeout(this.doTimedLoad.bind(this), 1, loc);
       return true;
