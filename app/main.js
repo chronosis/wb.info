@@ -1,6 +1,6 @@
-import 'jquery';
-import 'bootstrap';
+import $ from 'jquery';
 import 'jquery.cookie';
+import 'bootstrap';
 import './modal.extended';
 import PatreonFeed from './patreon-feed';
 import config from './config';

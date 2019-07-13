@@ -1,3 +1,4 @@
+import $ from 'jquery';
 // .modal-backdrop classes
 
 $(".modal-transparent").on('show.bs.modal', function () {
